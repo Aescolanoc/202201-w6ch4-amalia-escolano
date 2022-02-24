@@ -21,28 +21,28 @@ app.use((req, resp, next) => {
     next();
 });
 
-app.get('/things', (req, resp) => {
-    let result = getAllthings();
+app.get('/things', async (req, resp) => {
+    let result = await getAllthings();
     resp.json(result);
 });
 
-app.post('/things', (req, resp) => {
-    let result = insertThing(req.params);
+app.post('/things', async (req, resp) => {
+    let result = await insertThing(req.body);
     resp.json(result);
 });
 
-app.get('/things/:idThing', (req, resp) => {
-    let result = getThing(req.params.idThing);
+app.get('/things/:id', async (req, resp) => {
+    let result = await getThing(req.params.id);
     resp.json(result);
 });
 
-app.patch('/things/:idThing', (req, resp) => {
-    let result = updateThing(req.params.idThing, req.params.name);
+app.patch('/things/:id', async (req, resp) => {
+    let result = await updateThing(req.params.id, req.body);
     resp.json(result);
 });
 
-app.delete('/tasks/:idThing', (req, resp) => {
-    let result = deletethings(req.params.idThing);
+app.delete('/things/:id', async (req, resp) => {
+    let result = await deletethings(req.params.id);
     resp.json(result);
 });
 
